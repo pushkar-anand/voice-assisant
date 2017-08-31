@@ -1,18 +1,9 @@
-#include <libnotify/notify.h>
 #include <iostream>
+#include "headers/functions.h"
 
 int main(int argc, char * argv[] )
 {
-    notify_init("Starting Assistant");
-    NotifyNotification* n = notify_notification_new ("Hi!!",
-                                 "Your assistant has started",
-                                  0);
-    notify_notification_set_timeout(n, 10000); // 10 seconds
-
-    if (!notify_notification_show(n, 0))
-    {
-        std::cerr << "show has failed" << std::endl;
-        return -1;
-    }
-    return 0;
+  int x = startNotification();
+  system("python status.py");
+  return 0;
 }
