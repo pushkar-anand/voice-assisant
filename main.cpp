@@ -4,6 +4,7 @@
 int main(int argc, char * argv[] )
 {
   int x = startNotification();
-  system("python status.py");
+  system("python audio-listener.py");
+
   return 0;
 }

@@ -51,9 +51,11 @@ def build_menu():
 
 def start(_):
     #start audio listener
+    print "Start"
 
 def stop(_):
     #stop audio listener
+    print "Stop"
 
 def quit(_):
     Gtk.main_quit()
