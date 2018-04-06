@@ -1,3 +1,6 @@
-*.o
 .idea/
 cmake-build-debug/
+.gitignore
+*.o
+*.out
+
