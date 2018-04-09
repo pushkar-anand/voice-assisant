@@ -10,27 +10,34 @@ void init_services()
 
 }
 
-bool understand_sentence(string str)
-{
-    str = convert_to_lower_case(str);
-    parser cmd(str);
-    if (cmd.isGreet())
+void understand_sentence(string &str) {
+    vector<string> cmd_list;
+
+    str = remove_redundant_words(convert_to_lower_case(str));
+    parser parse(str);
+    if (parse.isGreet())
     {
         string reply = greetReply(str);
         speak(reply);
-    }
-    else if(cmd.isBye())
+        return;
+    } else if (parse.isBye())
     {
+        speak(byeReply());
+        exit(0);
+    } else if (parse.isCompliment())
+    {
+        speak(complimentReply());
+        return;
+    } else if (parse.isQuestion()) {
+        speak("I cannot answer questions yet");
+        return;
+    } else {
+        auto res = parse.isCommand();
+        if (res.first) {
+            cmd_list = res.second;
+        }
+    }
 
-    }
-    else if(cmd.isCommand())
-    {
-
-    }
-    else
-    {
-        string reply = unableReply();
-        speak(reply);
-    }
+    speak(unableReply());
 
 }
